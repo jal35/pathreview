@@ -10,3 +10,12 @@ The current project documentation fails to explain the mathematical logic behind
 **Branch name:** docs/36-hybrid-retrieval-scoring
 **Setup confirmation:** [x] App runs locally at localhost:5173
 **Cohort ledger:** [x] Issue added to cohort ledger
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** https://github.com/jal35/pathreview/commit/f559fe3
+**Reproduction summary:**
+I verified the gap by opening `docs/ARCHITECTURE.md` and finding that the hybrid retrieval system sections completely lacked the specific algebraic scoring formulas and parameter limits used by the active backend engine.
+
+**PLAN.md link:** https://github.com/jal35/pathreview/blob/docs/36-hybrid-retrieval-scoring/PLAN.md
+**Walkthrough video (recommended):** **Blockers or open questions:** None. The core formulas have been successfully verified and documented.
