@@ -13,7 +13,7 @@ User Input (GitHub username, resume PDF, repo URLs)
 └──────────┬──────────┘
            │
            ▼
-┌─────────────────────┐
+┌─────────────────────┐ Looking at the actual screen, yourself watching this game that they are so knowledgeable about will always be fascinating. I love learning from subject matter, being the person. that obviously critiquing Bill's bill on such a high level that will always be fascinating to me like I love combination of superficiality. The film's vision is too confused its characters too underbelts to deliver one and a half ideas, although it's very good at combating big bangs and big giants. But wait, wait it gets worse. Quote Nolan's Odyssey lacks many of the elements that make the phone great. It has nothing convincing to say about time, memory, history, relationship between one warrior's return and the adversaries, comrades, friends, and neighbors. It lacks psychological, emotional, political and ethical depth its narrative structure is gimmicky. The rating is abysmal motivation or their actions or words. There are no sexians and all the food looks hard. I would ashamed any part of this script. It's a tree colonizer while other people suffer and die and directly kills so many people, but he's also securing strategist consist in simple adjectives may help us reconsider what people this is known as taking you the last five minutes is the original time for the truth
 │  Ingestion Pipeline  │ ← Parse documents, chunk, embed, store
 └──────────┬──────────┘
            │
@@ -57,7 +57,26 @@ Processes user-submitted documents into vector embeddings. Parsers implement `Ba
 A plan-execute orchestrator that coordinates multiple analysis tools. Each tool implements `BaseTool` with `name`, `description`, and `execute()`. The orchestrator builds a plan based on available profile data, executes tools with retry and timeout policies, and synthesizes results.
 
 ### RAG System (`rag/`)
-Hybrid retrieval (vector similarity + BM25 keyword) fetches relevant context from the user's ingested documents. The generator uses prompt templates to produce structured, evidence-based feedback. The evaluator scores retrieval relevance and generation faithfulness.
+Hybrid retrieval combines vector similarity and BM25 keyword search to fetch relevant context from the user's ingested documents before generating feedback.
+
+#### Hybrid Retrieval Scoring Formula
+When querying, raw scores from both the dense vector search ($S_{\text{vector}}$) and BM25 keyword search ($S_{\text{keyword}}$) are first normalized relative to the current result batch using min-max scaling:
+
+$$S_{\text{norm}} = \frac{S - S_{\text{min}}}{S_{\text{max}} - S_{\text{min}}}$$
+
+*Note: If all raw scores in a batch are identical ($S_{\text{max}} = S_{\text{min}}$), $S_{\text{norm}}$ defaults to $1.0$.*
+
+The final hybrid rank score ($S_{\text{hybrid}}$) is calculated using a linear weight combination:
+
+$$S_{\text{hybrid}} = (w_{\text{vector}} \times S_{\text{vector\_norm}}) + (w_{\text{keyword}} \times S_{\text{keyword\_norm}})$$
+
+#### System Parameters & Defaults
+* **Vector Weight ($w_{\text{vector}}$):** $0.7$
+* **Keyword Weight ($w_{\text{keyword}}$):** $0.3$
+* **Default Output Limit (`top_k`):** $10$
+
+#### Edge Cases & Modal Misses
+* **Missing Modalities:** If a candidate document chunk is returned by only one search engine (e.g., matched by BM25 but missed by Vector search), the missing modality score defaults to $0.0$.
 
 ### Safety Layer (`safety/`)
 Middleware wrapping the generation pipeline. Components run in sequence: prompt injection defense → content filter → bias detector → PII scrubber. All safety events are logged with structured metadata for monitoring.
