@@ -19,3 +19,24 @@ I verified the gap by opening `docs/ARCHITECTURE.md` and finding that the hybrid
 
 **PLAN.md link:** https://github.com/jal35/pathreview/blob/docs/36-hybrid-retrieval-scoring/PLAN.md
 **Walkthrough video (recommended):** **Blockers or open questions:** None. The core formulas have been successfully verified and documented.
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+**Current progress:**
+I have fully implemented the missing hybrid scoring formulas, parameter rules, and an edge-case example inside `docs/ARCHITECTURE.md`. 
+**Next steps:**
+Open the Pull Request and complete final journal logs.
+**Blockers:** None.
+
+---
+
+### Check-in 2 (end of week)
+**PR link:** https://github.com/ascherj/pathreview/pull/878
+**Branch:** `docs/36-hybrid-retrieval-scoring`
+**What you built:**
+Added detailed documentation for the hybrid retrieval engine scoring formulas, explaining min-max score normalization, linear weight combination rules ($0.7$ vector / $0.3$ keyword), and modal miss handling.
+**Tests added or updated:**
+None required (Documentation issue).
+**Self-review confirmation:** [x] make check passes  [x] make test-unit passes
+**Draft PR feedback received from:** none
