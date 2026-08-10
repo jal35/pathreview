@@ -57,7 +57,7 @@ Processes user-submitted documents into vector embeddings. Parsers implement `Ba
 A plan-execute orchestrator that coordinates multiple analysis tools. Each tool implements `BaseTool` with `name`, `description`, and `execute()`. The orchestrator builds a plan based on available profile data, executes tools with retry and timeout policies, and synthesizes results.
 
 ### RAG System (`rag/`)
-Hybrid retrieval combines vector similarity and BM25 keyword search to fetch relevant context from the user's ingested documents before generating feedback.
+Hybrid retrieval combines vector similarity and BM25 keyword search to fetch relevant context from the user's ingested documents before generating feedback. The generator uses prompt templates to produce structured, evidence-based feedback. The evaluator scores retrieval relevance and generation faithfulness.
 
 #### Hybrid Retrieval Scoring Formula
 When querying, raw scores from both the dense vector search ($S_{\text{vector}}$) and BM25 keyword search ($S_{\text{keyword}}$) are first normalized relative to the current result batch using min-max scaling:
