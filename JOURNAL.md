@@ -50,7 +50,7 @@ None required (Documentation issue).
 **Feedback received:** [x] Yes  [ ] No — still awaiting review
 
 **Summary of feedback:**
-Two parts. The content of the change was well received — the reviewer said the
+Two parts. The content of the change was well received, the reviewer said the
 scoring formulas were well-structured, the modal-miss edge case was a practical
 detail other developers would benefit from, and the parameter defaults were easy
 to scan.
@@ -71,7 +71,7 @@ the original scaffold commit. Then verified the fix more broadly rather than
 just spot-checking the one line:
 
 - Diffed the branch against the pre-existing scaffold commit (`888af31`) to
-  confirm the only remaining changes are the intended RAG scoring section —
+  confirm the only remaining changes are the intended RAG scoring section,
   nothing else in the diagram, the subsystem sections, or the ADR links was
   touched.
 - Scanned every line in the file over 200 characters to catch any other injected
@@ -80,7 +80,7 @@ just spot-checking the one line:
   exactly, instead of retyping the border from memory.
 
 One thing the review didn't flag that the full-file read surfaced: my rewrite of
-the RAG System paragraph dropped two sentences that were in the original — the
+the RAG System paragraph dropped two sentences that were in the original, the
 ones documenting the generator ("uses prompt templates to produce structured,
 evidence-based feedback") and the evaluator ("scores retrieval relevance and
 generation faithfulness"). The new text covers retrieval well but no longer
@@ -108,14 +108,14 @@ on before, so I wanted to be precise about what the actual gap was rather than
 guessing and starting to write. On my own projects I can afford to explore by
 changing things and seeing what breaks; here the code was already correct and
 working, so my job was to describe it faithfully, not to reshape it. The balance
-I had to find was being careful without getting stuck contemplating forever — at
+I had to find was being careful without getting stuck contemplating forever, at
 some point I had to commit to an understanding and write it down.
 
 **How did AI tools help — and where did they fall short?**
 AI was most useful for orientation: getting my bearings in an unfamiliar codebase
 quickly, and helping me work through the scoring logic when I was stuck on how to
 express it. Where it fell short was verification. The nonsense text that ended up
-inside my `ARCHITECTURE.md` diagram is the clearest example — AI assistance got
+inside my `ARCHITECTURE.md` diagram is the clearest example, AI assistance got
 content into the file, but nothing except me reading the full file and diffing it
 was ever going to catch that it didn't belong there. That's the part I have to
 own. AI could help me understand and draft, but it couldn't be responsible for
@@ -125,7 +125,7 @@ whether what I submitted was actually clean.
 I'd probably pick an issue that involved changing actual code rather than
 documentation, so I'd get more practice with the test and review cycle. I'd also
 build in a real self-review step before committing instead of treating the work
-as done once the content was written — reading the whole file, not just my
+as done once the content was written, reading the whole file, not just my
 sections. That said, I'm glad documentation was my first one; it forced me to
 genuinely understand the retrieval math instead of hiding behind a passing test,
 and it's made me eager to take on more.
@@ -135,5 +135,5 @@ Sticking with it through the part I didn't understand. The hybrid scoring formul
 was genuinely confusing at first, and it would have been easy to write something
 vague that sounded right. Instead I stayed with it until I could explain the
 min-max normalization and the $0.7$/$0.3$ weighting clearly enough that another
-developer could follow it — and the reviewer specifically said that part was
+developer could follow it, and the reviewer specifically said that part was
 well-structured and useful.
